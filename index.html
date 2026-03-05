@@ -3,18 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anchor Browser Support</title>
+    <title>Anchor Browser | Sign In</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f9fafb; margin: 0; }
-        .card { background: white; padding: 2rem; border-radius: 8px; shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; max-width: 400px; text-align: center; }
-        h1 { color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem; }
-        p { color: #6b7280; line-height: 1.5; }
+        body { font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f3f4f6; margin: 0; }
+        .card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border: 1px solid #e5e7eb; width: 100%; max-width: 360px; }
+        h1 { color: #111827; font-size: 1.25rem; margin-bottom: 1.5rem; font-weight: 600; text-align: center; }
+        .field { margin-bottom: 1rem; text-align: left; }
+        label { display: block; font-size: 0.875rem; color: #374151; margin-bottom: 0.25rem; }
+        input { width: 100%; padding: 0.625rem; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; font-size: 0.875rem; }
+        button { width: 100%; background: #2563eb; color: white; border: none; padding: 0.625rem; border-radius: 6px; font-weight: 500; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+        button:hover { background: #1d4ed8; }
+        .success { display: none; text-align: center; color: #059669; }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>This is not a trap.</h1>
-        <p>You have reached the configuration portal for Anchor Browser extensions. Please refer to your internal documentation to proceed.</p>
+    <div class="card" id="login-card">
+        <h1>Sign in to Workspace</h1>
+        <form id="login-form">
+            <div class="field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" placeholder="name@company.com" required>
+            </div>
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Continue</button>
+        </form>
     </div>
+
+    <div class="card success" id="success-card">
+        <h1>Login Successful</h1>
+        <p>Your workspace is being prepared. You can close this window now.</p>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('login-card').style.display = 'none';
+            document.getElementById('success-card').style.display = 'block';
+            console.log("Credentials submitted. Success state active.");
+        });
+    </script>
 </body>
 </html>
